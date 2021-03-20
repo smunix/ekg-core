@@ -36,6 +36,7 @@ library
     ghc-prim < 0.7,
     base >= 4.6 && < 4.15,
     containers >= 0.5 && < 0.7,
+    deepseq,
     text < 1.3,
     unordered-containers < 0.3
 
@@ -68,6 +69,18 @@ benchmark distribution
   default-language: Haskell2010
   hs-source-dirs: benchmarks
   ghc-options: -O2 -threaded -Wall
+
+executable benches
+  main-is: All.hs
+  type: exitcode-stdio-1.0
+  build-depends:
+    base,
+    deepseq,
+    ekg-core,
+    gauge
+  default-language: Haskell2010
+  hs-source-dirs: benchmarks
+  ghc-options: -O2 -threaded -Wall -with-rtsopts=-N
 
 source-repository head
   type:     git

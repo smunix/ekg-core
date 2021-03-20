@@ -3,20 +3,24 @@
 -- be used to track e.g. the number of requests served since program
 -- start.  All operations on counters are thread-safe.
 module System.Metrics.Counter
-    (
-      Counter
-    , new
-    , read
-    , inc
-    , add
-    ) where
+  ( Counter,
+    new,
+    read,
+    inc,
+    add,
+  )
+where
 
+import Control.DeepSeq
 import qualified Data.Atomic as Atomic
 import Data.Int (Int64)
 import Prelude hiding (read)
 
 -- | A mutable, integer-valued counter.
-newtype Counter = C { unC :: Atomic.Atomic }
+newtype Counter = C {unC :: Atomic.Atomic}
+
+instance NFData Counter where
+  rnf = flip seq ()
 
 -- | Create a new, zero initialized, counter.
 new :: IO Counter

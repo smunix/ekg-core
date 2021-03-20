@@ -1,0 +1,13 @@
+cradle:
+  cabal:
+    - path: "./"
+      component: "lib:ekg-core"
+
+    - path: "benchmarks/Counter.hs"
+      component: "ekg-core:bench:counter"
+
+    - path: "benchmarks/Distribution.hs"
+      component: "ekg-core:bench:distribution"
+
+    - path: "benchmarks/All.hs"
+      component: "ekg-core:exe:benches"
